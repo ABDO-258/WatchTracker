@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>login</TITLE>
+        <link rel="stylesheet" type="text/css" href="../static/styles/auth.css">
+    </HEAD>
+    <BODY>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        <H1>login page</H1>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            {{ form.username }}
+            {{ form.password }}
+            {{ form.submit }}
+        </form>
+        <a href="{{ url_for('register') }}">don't have an account? Sign Up</a><br>
+    </BODY>
+    </BODY>
+</HTML>

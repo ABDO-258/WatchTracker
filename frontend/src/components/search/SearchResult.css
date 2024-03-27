@@ -1,0 +1,41 @@
+.search-result {
+  padding: 10px 20px;
+  width: 100%;
+}
+
+.search-result:hover {
+  background-color: #efefef;
+}
+
+
+.popup {
+  width: 90%;
+  height: 70%;
+  position: fixed;
+  top: 48%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 1000; /* Ensure popup appears above other content */
+}
+
+.popup-backdrop {
+  position: fixed;
+  top: 90;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  z-index: 999; /* Ensure backdrop appears beneath popup */
+}
+
+.show-info-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.show-info {
+  padding: 20px;
+}

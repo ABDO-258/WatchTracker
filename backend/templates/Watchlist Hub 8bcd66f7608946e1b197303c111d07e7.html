@@ -1,0 +1,684 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Watchlist Hub</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="8bcd66f7-6089-46e1-b197-303c111d07e7" class="page mono"><header><img class="page-cover-image" src="https://www.notion.so/images/page-cover/met_joseph_hidley_1870.jpg" style="object-position:center 60%"/><div class="page-header-icon page-header-icon-with-cover"><span class="icon">🍿</span></div><h1 class="page-title">Watchlist Hub</h1><p class="page-description"></p></header><div class="page-body"><div id="e182a8a1-666d-4e86-ad38-e72443202985" class="column-list"><div id="948f1e79-5634-4385-a6c4-59f6fb2d8b6a" style="width:18.75%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="92ac1dbf-e533-424b-92d0-128f4b9efbde"><div style="font-size:1.5em"><span class="icon">💡</span></div><div style="width:100%"><strong>Quick Actions</strong></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="f8dd6d67-484c-4c38-ad54-3f4e609c5c89"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/reorder_gray.svg"/></div><div style="width:100%"><strong>Navigation</strong><figure id="3b1607fa-1f16-43d5-94b3-f4628e88e770" class="link-to-page"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a></figure><figure id="b70ef676-03aa-4901-8579-039fbe3048a0" class="link-to-page"><a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></figure><figure id="65f0d3c6-4503-4ae9-93ba-2302d08c0816" class="link-to-page"><a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></figure><p id="4c95002e-9e69-495f-8710-f6d9eee30055" class=""> </p></div></figure><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="78dfb494-429e-44f4-974e-d1e8cfb13e59"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/directions_gray.svg"/></div><div style="width:100%"><strong>Genres</strong><figure id="026b5ffc-56bc-4c50-bff7-460f4177991e" class="link-to-page"><a href="https://www.notion.so/Action-026b5ffc56bc4c50bff7460f4177991e?pvs=21"><span class="icon">💥</span>Action</a></figure><figure id="0cfddbae-6a2c-4b1f-a63b-766e573455aa" class="link-to-page"><a href="https://www.notion.so/Sitcom-0cfddbae6a2c4b1fa63b766e573455aa?pvs=21"><span class="icon">💬</span>Sitcom</a></figure><figure id="27f75317-1daf-489c-9a27-555954633dfa" class="link-to-page"><a href="https://www.notion.so/Western-27f753171daf489c9a27555954633dfa?pvs=21"><span class="icon">🤠</span>Western</a></figure><figure id="c9b0b98c-88ed-445b-ac64-5d6e2f13ccd2" class="link-to-page"><a href="https://www.notion.so/Adventure-c9b0b98c88ed445bac645d6e2f13ccd2?pvs=21"><img class="icon" src="https://www.notion.so/icons/compass_gray.svg"/>Adventure</a></figure><figure id="c5cce6c0-7eff-4905-a4f0-4b15c2abb87e" class="link-to-page"><a href="https://www.notion.so/Mystery-c5cce6c07eff4905a4f04b15c2abb87e?pvs=21"><img class="icon" src="https://www.notion.so/icons/conceal_gray.svg"/>Mystery</a></figure><figure id="567ff4a3-0346-4e7b-bf0f-0bc1fa3dcb5b" class="link-to-page"><a href="https://www.notion.so/Family-567ff4a303464e7bbf0f0bc1fa3dcb5b?pvs=21"><span class="icon">👨‍👩‍👦</span>Family</a></figure><figure id="df5128a7-df66-4d0c-a491-53af392e0160" class="link-to-page"><a href="https://www.notion.so/War-df5128a7df664d0ca49153af392e0160?pvs=21"><span class="icon">🪖</span>War</a></figure><figure id="5d3bb544-6973-4028-bc3c-2a4116a1febd" class="link-to-page"><a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a></figure><figure id="4adaf565-f0e2-4300-88d9-35b8f8038a7c" class="link-to-page"><a href="https://www.notion.so/Romance-4adaf565f0e2430088d935b8f8038a7c?pvs=21"><span class="icon">❤️</span>Romance</a></figure><figure id="509aca6c-aa0a-48c1-a06d-7081979b1e25" class="link-to-page"><a href="https://www.notion.so/Animation-509aca6caa0a48c1a06d7081979b1e25?pvs=21"><span class="icon">🐰</span>Animation</a></figure><figure id="9efd17be-ba44-4098-ab04-0e0dd5c1bb36" class="link-to-page"><a href="https://www.notion.so/History-9efd17beba444098ab040e0dd5c1bb36?pvs=21"><span class="icon">🏰</span>History</a></figure><figure id="22be0b61-985e-4a9c-aec6-28be595c56d2" class="link-to-page"><a href="https://www.notion.so/Fantasy-22be0b61985e4a9caec628be595c56d2?pvs=21"><span class="icon">🧙‍♂️</span>Fantasy</a></figure><figure id="495f3daf-f69a-429e-8a37-069450a5c6df" class="link-to-page"><a href="https://www.notion.so/Sci-fi-495f3daff69a429e8a37069450a5c6df?pvs=21"><span class="icon">👽</span>Sci-fi</a></figure><figure id="805bf1fc-c7ff-4b2c-9fcb-711a569a0f9f" class="link-to-page"><a href="https://www.notion.so/Crime-805bf1fcc7ff4b2c9fcb711a569a0f9f?pvs=21"><span class="icon">👮‍♂️</span>Crime</a></figure><figure id="6579a82d-fb76-4c2e-ae07-3e54b5bbd9da" class="link-to-page"><a href="https://www.notion.so/Comedy-6579a82dfb764c2eae073e54b5bbd9da?pvs=21"><span class="icon">😂</span>Comedy</a></figure><figure id="0f961bae-c3ce-463b-8d9d-b276f87d740b" class="link-to-page"><a href="https://www.notion.so/Sport-0f961baec3ce463b8d9db276f87d740b?pvs=21"><span class="icon">🏀</span>Sport</a></figure><figure id="755170e3-d39b-4cbb-832e-a3df31c19eaa" class="link-to-page"><a href="https://www.notion.so/Musical-755170e3d39b4cbb832ea3df31c19eaa?pvs=21"><span class="icon">🎶</span>Musical</a></figure><figure id="c15e2fb5-6263-4684-8ae4-875fe630b706" class="link-to-page"><a href="https://www.notion.so/Horror-c15e2fb5626346848ae4875fe630b706?pvs=21"><span class="icon">👻</span>Horror</a></figure><figure id="175403e9-1462-4fa0-a5c0-a220fb5f67db" class="link-to-page"><a href="https://www.notion.so/Biography-175403e914624fa0a5c0a220fb5f67db?pvs=21"><span class="icon">👨</span>Biography</a></figure><figure id="71b6bfea-8782-46bd-9062-51cf76ae5e61" class="link-to-page"><a href="https://www.notion.so/Documentary-71b6bfea878246bd906251cf76ae5e61?pvs=21"><span class="icon">🐺</span>Documentary</a></figure><figure id="eab7712b-8003-4910-86fc-2e6af38ccc65" class="link-to-page"><a href="https://www.notion.so/Thriller-eab7712b8003491086fc2e6af38ccc65?pvs=21"><span class="icon">🔪</span>Thriller</a></figure></div></figure><p id="8ccf27b9-60f3-4ec2-9a28-eef6a0b7845e" class="">
+</p></div><div id="ffff7d44-7587-479a-9491-67e1b29c0785" style="width:81.25%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="cab9b5c2-0f76-4116-a21a-905aaf683dd4"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/categories_gray.svg"/></div><div style="width:100%"><strong>Categories</strong></div></figure><div id="d36aeecc-362f-4324-bd16-87b9ae1346ae" class="collection-content"><h4 class="collection-title">Watchlist - Categories</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRollup"><path d="M1.25293 6.82031C1.25293 9.88965 3.74805 12.3848 6.81738 12.3848C7.95898 12.3848 9.00488 12.0361 9.87988 11.4414L13.0244 14.5859C13.2158 14.7842 13.4824 14.873 13.749 14.873C14.3301 14.873 14.7471 14.4355 14.7471 13.8682C14.7471 13.5947 14.6514 13.3418 14.4668 13.1504L11.3428 10.0195C11.9922 9.12402 12.3818 8.0166 12.3818 6.82031C12.3818 3.75098 9.88672 1.25586 6.81738 1.25586C3.74805 1.25586 1.25293 3.75098 1.25293 6.82031ZM2.70215 6.82031C2.70215 4.55078 4.54102 2.70508 6.81738 2.70508C9.08691 2.70508 10.9326 4.55078 10.9326 6.82031C10.9326 9.08984 9.08691 10.9355 6.81738 10.9355C4.54102 10.9355 2.70215 9.08984 2.70215 6.82031Z"></path></svg></span>Content Count</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Contents</th></tr></thead><tbody><tr id="3b1607fa-1f16-43d5-94b3-f4628e88e770"><td class="cell-title"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a></td><td class="cell-JQxo">7</td><td class="cell-Kx[t"><a href="https://www.notion.so/Fight-Club-03bcd569f7da4ad7912c9d32d41eef5c?pvs=21">Fight Club</a>, <a href="https://www.notion.so/Fast-and-Furious-9-53b846ebfd0a49369d97b6c7a767569c?pvs=21">Fast and Furious 9</a>, <a href="https://www.notion.so/Interstellar-6050361eec2044a4b0437b9490435219?pvs=21">Interstellar</a>, <a href="https://www.notion.so/Napoleon-8132cc9eefaa479592eb8bed52f91643?pvs=21">Napoleon</a>, <a href="https://www.notion.so/Spider-Man-Across-the-Spider-Verse-8d146f3051464cbb86102cd69e54bb99?pvs=21">Spider-Man: Across the Spider-Verse</a>, <a href="https://www.notion.so/Inception-a13c237f11c14ff3807dc2506b74df86?pvs=21">Inception</a>, <a href="https://www.notion.so/cc417a14c73f4d93bfa9aa9ecb20125e?pvs=21">Sans titre</a></td></tr><tr id="b70ef676-03aa-4901-8579-039fbe3048a0"><td class="cell-title"><a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-JQxo">7</td><td class="cell-Kx[t"><a href="https://www.notion.so/How-I-Met-Your-Mother-11f8f7e97e914c64ac262bbe71a8552d?pvs=21">How I Met Your Mother</a>, <a href="https://www.notion.so/Ahsoka-3c7d3cfd7ef44c4ab7535b818b250b9c?pvs=21">Ahsoka</a>, <a href="https://www.notion.so/Queen-s-Gambit-2d3c93d536e347c48bb5343c2d4dfb1d?pvs=21">Queen’s Gambit</a>, <a href="https://www.notion.so/Peaky-Blinders-51f4699201eb4df4963402f004846c0c?pvs=21">Peaky Blinders</a>, <a href="https://www.notion.so/Band-of-Brothers-0fc75e84453b4f47917e32d4c27977cc?pvs=21">Band of Brothers</a>, <a href="https://www.notion.so/Succession-48f956c4a8f6403ba9db9151979e3044?pvs=21">Succession</a>, <a href="https://www.notion.so/The-Last-of-Us-b471586c64cf4104972f7607cfee154b?pvs=21">The Last of Us</a></td></tr><tr id="65f0d3c6-4503-4ae9-93ba-2302d08c0816"><td class="cell-title"><a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-JQxo">4</td><td class="cell-Kx[t"><a href="https://www.notion.so/Attack-on-Titan-23ddf92b67e14099b3d1762b580d8f90?pvs=21">Attack on Titan</a>, <a href="https://www.notion.so/One-Piece-5da0d45aba0d479d9226bca6e804b214?pvs=21">One Piece</a>, <a href="https://www.notion.so/Full-Metal-Alchemist-Brotherhood-74e0785e573b4925b4aee006fabf54b7?pvs=21">Full Metal Alchemist: Brotherhood</a>, <a href="https://www.notion.so/Jujutsu-Kaisen-ebdd8c13a20f48c68de0e7ce76ef90aa?pvs=21">Jujutsu Kaisen</a></td></tr></tbody></table><br/><br/></div><div id="aab1d12d-d17e-441d-9577-5772d73f16ba" class="column-list"><div id="2ca0dfbf-0dd5-4872-8cd9-07d3da54574a" style="width:93.75%" class="column"><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="4b5afa0c-ac1b-4938-a781-7c2fc00c790a"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/list_gray.svg"/></div><div style="width:100%"><strong>Watchlist</strong></div></figure><div id="87956ab6-948d-4800-a0f8-a6097d7276e5" class="collection-content"><h4 class="collection-title">Watchlist - Contents</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Category</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Genres</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Length</th></tr></thead><tbody><tr id="8d146f30-5146-4cbb-8610-2cd69e54bb99"><td class="cell-title"><a href="https://www.notion.so/Spider-Man-Across-the-Spider-Verse-8d146f3051464cbb86102cd69e54bb99?pvs=21">Spider-Man: Across the Spider-Verse</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Animation-509aca6caa0a48c1a06d7081979b1e25?pvs=21"><span class="icon">🐰</span>Animation</a>, <a href="https://www.notion.so/Action-026b5ffc56bc4c50bff7460f4177991e?pvs=21"><span class="icon">💥</span>Action</a>, <a href="https://www.notion.so/Adventure-c9b0b98c88ed445bac645d6e2f13ccd2?pvs=21"><img class="icon" src="https://www.notion.so/icons/compass_gray.svg"/>Adventure</a></td><td class="cell-?]JL">2h 20m</td></tr><tr id="2d3c93d5-36e3-47c4-8bb5-343c2d4dfb1d"><td class="cell-title"><a href="https://www.notion.so/Queen-s-Gambit-2d3c93d536e347c48bb5343c2d4dfb1d?pvs=21">Queen’s Gambit</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a></td><td class="cell-?]JL">7 Episodes</td></tr><tr id="b471586c-64cf-4104-972f-7607cfee154b"><td class="cell-title"><a href="https://www.notion.so/The-Last-of-Us-b471586c64cf4104972f7607cfee154b?pvs=21">The Last of Us</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Action-026b5ffc56bc4c50bff7460f4177991e?pvs=21"><span class="icon">💥</span>Action</a>, <a href="https://www.notion.so/Adventure-c9b0b98c88ed445bac645d6e2f13ccd2?pvs=21"><img class="icon" src="https://www.notion.so/icons/compass_gray.svg"/>Adventure</a>, <a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a></td><td class="cell-?]JL">10 Episodes</td></tr><tr id="0fc75e84-453b-4f47-917e-32d4c27977cc"><td class="cell-title"><a href="https://www.notion.so/Band-of-Brothers-0fc75e84453b4f47917e32d4c27977cc?pvs=21">Band of Brothers</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-L{\q"><a href="https://www.notion.so/War-df5128a7df664d0ca49153af392e0160?pvs=21"><span class="icon">🪖</span>War</a>, <a href="https://www.notion.so/History-9efd17beba444098ab040e0dd5c1bb36?pvs=21"><span class="icon">🏰</span>History</a>, <a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a></td><td class="cell-?]JL">10 Episodes</td></tr><tr id="51f46992-01eb-4df4-9634-02f004846c0c"><td class="cell-title"><a href="https://www.notion.so/Peaky-Blinders-51f4699201eb4df4963402f004846c0c?pvs=21">Peaky Blinders</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Crime-805bf1fcc7ff4b2c9fcb711a569a0f9f?pvs=21"><span class="icon">👮‍♂️</span>Crime</a>, <a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a></td><td class="cell-?]JL">36 Episodes</td></tr><tr id="48f956c4-a8f6-403b-a9db-9151979e3044"><td class="cell-title"><a href="https://www.notion.so/Succession-48f956c4a8f6403ba9db9151979e3044?pvs=21">Succession</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a>, <a href="https://www.notion.so/Comedy-6579a82dfb764c2eae073e54b5bbd9da?pvs=21"><span class="icon">😂</span>Comedy</a></td><td class="cell-?]JL">39? Episodes</td></tr><tr id="cc417a14-c73f-4d93-bfa9-aa9ecb20125e"><td class="cell-title"><a href="https://www.notion.so/cc417a14c73f4d93bfa9aa9ecb20125e?pvs=21">Sans titre</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a></td><td class="cell-L{\q"></td><td class="cell-?]JL"></td></tr></tbody></table><br/><br/></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="02e7eceb-921f-4410-8008-7c666ff2f678"><div style="font-size:1.5em"><img class="icon" src="https://www.notion.so/icons/preview_gray.svg"/></div><div style="width:100%"><strong>Currently Watching</strong></div></figure><div id="34ce3001-564b-4899-a5ce-9fe9922ffae7" class="collection-content"><h4 class="collection-title">Watchlist - Contents</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Category</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Genres</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Length</th></tr></thead><tbody><tr id="3c7d3cfd-7ef4-4c4a-b753-5b818b250b9c"><td class="cell-title"><a href="https://www.notion.so/Ahsoka-3c7d3cfd7ef44c4ab7535b818b250b9c?pvs=21">Ahsoka</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Adventure-c9b0b98c88ed445bac645d6e2f13ccd2?pvs=21"><img class="icon" src="https://www.notion.so/icons/compass_gray.svg"/>Adventure</a>, <a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a>, <a href="https://www.notion.so/Action-026b5ffc56bc4c50bff7460f4177991e?pvs=21"><span class="icon">💥</span>Action</a></td><td class="cell-?]JL">8? Episodes</td></tr><tr id="5da0d45a-ba0d-479d-9226-bca6e804b214"><td class="cell-title"><a href="https://www.notion.so/One-Piece-5da0d45aba0d479d9226bca6e804b214?pvs=21">One Piece</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Action-026b5ffc56bc4c50bff7460f4177991e?pvs=21"><span class="icon">💥</span>Action</a>, <a href="https://www.notion.so/Adventure-c9b0b98c88ed445bac645d6e2f13ccd2?pvs=21"><img class="icon" src="https://www.notion.so/icons/compass_gray.svg"/>Adventure</a>, <a href="https://www.notion.so/Shounen-8adb4ec5a4194e8b9420e8ffd968ef6c?pvs=21"><span class="icon">👶</span>Shounen</a></td><td class="cell-?]JL">1000+ Episodes</td></tr></tbody></table><br/><br/></div><p id="a8ad5dd3-de4c-464c-9064-a39362b6db24" class="">
+</p></div><div id="0ab4a88a-f5af-4aff-ad41-4547dd12fcd8" style="width:49.999999999999986%" class="column"><figure id="1610109d-d82f-48c1-abde-dd811d574ee2" class="image"><a href="https://c4.wallpaperflare.com/wallpaper/687/356/960/joker-2019-movie-joker-smile-digital-art-poster-hd-wallpaper-preview.jpg"><img style="width:432px" src="https://c4.wallpaperflare.com/wallpaper/687/356/960/joker-2019-movie-joker-smile-digital-art-poster-hd-wallpaper-preview.jpg"/></a></figure><p id="333df3e8-034a-4648-b8fc-529671b55c2c" class="">
+</p></div></div><p id="7c912d88-dced-4c19-b075-31537323710b" class="">
+</p></div></div><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="5516a5a4-6b49-44cf-bfaa-dd912845b6d8"><div style="font-size:1.5em"><span class="icon">🗓️</span></div><div style="width:100%"><strong>Release Dates</strong></div></figure><div id="ca4e343a-87a4-4b94-8cb2-a2ddb8270b33" class="collection-content"><h4 class="collection-title">Release Dates</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Category</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesDate"><path d="M3.29688 14.4561H12.7031C14.1797 14.4561 14.9453 13.6904 14.9453 12.2344V3.91504C14.9453 2.45215 14.1797 1.69336 12.7031 1.69336H3.29688C1.82031 1.69336 1.05469 2.45215 1.05469 3.91504V12.2344C1.05469 13.6973 1.82031 14.4561 3.29688 14.4561ZM3.27637 13.1162C2.70898 13.1162 2.39453 12.8154 2.39453 12.2207V5.9043C2.39453 5.30273 2.70898 5.00879 3.27637 5.00879H12.71C13.2842 5.00879 13.6055 5.30273 13.6055 5.9043V12.2207C13.6055 12.8154 13.2842 13.1162 12.71 13.1162H3.27637ZM6.68066 7.38086H7.08398C7.33008 7.38086 7.41211 7.30566 7.41211 7.05957V6.66309C7.41211 6.41699 7.33008 6.3418 7.08398 6.3418H6.68066C6.44141 6.3418 6.35938 6.41699 6.35938 6.66309V7.05957C6.35938 7.30566 6.44141 7.38086 6.68066 7.38086ZM8.92285 7.38086H9.31934C9.56543 7.38086 9.64746 7.30566 9.64746 7.05957V6.66309C9.64746 6.41699 9.56543 6.3418 9.31934 6.3418H8.92285C8.67676 6.3418 8.59473 6.41699 8.59473 6.66309V7.05957C8.59473 7.30566 8.67676 7.38086 8.92285 7.38086ZM11.1582 7.38086H11.5547C11.8008 7.38086 11.8828 7.30566 11.8828 7.05957V6.66309C11.8828 6.41699 11.8008 6.3418 11.5547 6.3418H11.1582C10.9121 6.3418 10.8301 6.41699 10.8301 6.66309V7.05957C10.8301 7.30566 10.9121 7.38086 11.1582 7.38086ZM4.44531 9.58203H4.84863C5.09473 9.58203 5.17676 9.50684 5.17676 9.26074V8.86426C5.17676 8.61816 5.09473 8.54297 4.84863 8.54297H4.44531C4.20605 8.54297 4.12402 8.61816 4.12402 8.86426V9.26074C4.12402 9.50684 4.20605 9.58203 4.44531 9.58203ZM6.68066 9.58203H7.08398C7.33008 9.58203 7.41211 9.50684 7.41211 9.26074V8.86426C7.41211 8.61816 7.33008 8.54297 7.08398 8.54297H6.68066C6.44141 8.54297 6.35938 8.61816 6.35938 8.86426V9.26074C6.35938 9.50684 6.44141 9.58203 6.68066 9.58203ZM8.92285 9.58203H9.31934C9.56543 9.58203 9.64746 9.50684 9.64746 9.26074V8.86426C9.64746 8.61816 9.56543 8.54297 9.31934 8.54297H8.92285C8.67676 8.54297 8.59473 8.61816 8.59473 8.86426V9.26074C8.59473 9.50684 8.67676 9.58203 8.92285 9.58203ZM11.1582 9.58203H11.5547C11.8008 9.58203 11.8828 9.50684 11.8828 9.26074V8.86426C11.8828 8.61816 11.8008 8.54297 11.5547 8.54297H11.1582C10.9121 8.54297 10.8301 8.61816 10.8301 8.86426V9.26074C10.8301 9.50684 10.9121 9.58203 11.1582 9.58203ZM4.44531 11.7832H4.84863C5.09473 11.7832 5.17676 11.708 5.17676 11.4619V11.0654C5.17676 10.8193 5.09473 10.7441 4.84863 10.7441H4.44531C4.20605 10.7441 4.12402 10.8193 4.12402 11.0654V11.4619C4.12402 11.708 4.20605 11.7832 4.44531 11.7832ZM6.68066 11.7832H7.08398C7.33008 11.7832 7.41211 11.708 7.41211 11.4619V11.0654C7.41211 10.8193 7.33008 10.7441 7.08398 10.7441H6.68066C6.44141 10.7441 6.35938 10.8193 6.35938 11.0654V11.4619C6.35938 11.708 6.44141 11.7832 6.68066 11.7832ZM8.92285 11.7832H9.31934C9.56543 11.7832 9.64746 11.708 9.64746 11.4619V11.0654C9.64746 10.8193 9.56543 10.7441 9.31934 10.7441H8.92285C8.67676 10.7441 8.59473 10.8193 8.59473 11.0654V11.4619C8.59473 11.708 8.67676 11.7832 8.92285 11.7832Z"></path></svg></span>Date</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesMultipleSelect"><path d="M1.91602 4.83789C2.44238 4.83789 2.87305 4.40723 2.87305 3.87402C2.87305 3.34766 2.44238 2.91699 1.91602 2.91699C1.38281 2.91699 0.952148 3.34766 0.952148 3.87402C0.952148 4.40723 1.38281 4.83789 1.91602 4.83789ZM5.1084 4.52344H14.3984C14.7607 4.52344 15.0479 4.23633 15.0479 3.87402C15.0479 3.51172 14.7607 3.22461 14.3984 3.22461H5.1084C4.74609 3.22461 4.45898 3.51172 4.45898 3.87402C4.45898 4.23633 4.74609 4.52344 5.1084 4.52344ZM1.91602 9.03516C2.44238 9.03516 2.87305 8.60449 2.87305 8.07129C2.87305 7.54492 2.44238 7.11426 1.91602 7.11426C1.38281 7.11426 0.952148 7.54492 0.952148 8.07129C0.952148 8.60449 1.38281 9.03516 1.91602 9.03516ZM5.1084 8.7207H14.3984C14.7607 8.7207 15.0479 8.43359 15.0479 8.07129C15.0479 7.70898 14.7607 7.42188 14.3984 7.42188H5.1084C4.74609 7.42188 4.45898 7.70898 4.45898 8.07129C4.45898 8.43359 4.74609 8.7207 5.1084 8.7207ZM1.91602 13.2324C2.44238 13.2324 2.87305 12.8018 2.87305 12.2686C2.87305 11.7422 2.44238 11.3115 1.91602 11.3115C1.38281 11.3115 0.952148 11.7422 0.952148 12.2686C0.952148 12.8018 1.38281 13.2324 1.91602 13.2324ZM5.1084 12.918H14.3984C14.7607 12.918 15.0479 12.6309 15.0479 12.2686C15.0479 11.9062 14.7607 11.6191 14.3984 11.6191H5.1084C4.74609 11.6191 4.45898 11.9062 4.45898 12.2686C4.45898 12.6309 4.74609 12.918 5.1084 12.918Z"></path></svg></span>Location</th></tr></thead><tbody><tr id="6c297376-0d56-4c35-8602-40a552ceba39"><td class="cell-title"><a href="https://www.notion.so/Dune-Part-Two-6c2973760d564c35860240a552ceba39?pvs=21">Dune: Part Two</a></td><td class="cell-lGYl"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a></td><td class="cell-WvgF"><time>@1 mars 2024</time></td><td class="cell-pHec"><span class="selected-value select-value-color-default">Cinema</span></td></tr></tbody></table><br/><br/></div><ul id="b04c5b9a-80aa-440b-a6c6-e78aa3e8afff" class="toggle"><li><details open=""><summary>Databases</summary><div id="ba25f9e1-9a08-4db1-a8ee-53658dd7ec39" class="collection-content"><h4 class="collection-title">Watchlist - Categories</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRollup"><path d="M1.25293 6.82031C1.25293 9.88965 3.74805 12.3848 6.81738 12.3848C7.95898 12.3848 9.00488 12.0361 9.87988 11.4414L13.0244 14.5859C13.2158 14.7842 13.4824 14.873 13.749 14.873C14.3301 14.873 14.7471 14.4355 14.7471 13.8682C14.7471 13.5947 14.6514 13.3418 14.4668 13.1504L11.3428 10.0195C11.9922 9.12402 12.3818 8.0166 12.3818 6.82031C12.3818 3.75098 9.88672 1.25586 6.81738 1.25586C3.74805 1.25586 1.25293 3.75098 1.25293 6.82031ZM2.70215 6.82031C2.70215 4.55078 4.54102 2.70508 6.81738 2.70508C9.08691 2.70508 10.9326 4.55078 10.9326 6.82031C10.9326 9.08984 9.08691 10.9355 6.81738 10.9355C4.54102 10.9355 2.70215 9.08984 2.70215 6.82031Z"></path></svg></span>Content Count</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Contents</th></tr></thead><tbody><tr id="3b1607fa-1f16-43d5-94b3-f4628e88e770"><td class="cell-title"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a></td><td class="cell-JQxo">7</td><td class="cell-Kx[t"><a href="https://www.notion.so/Fight-Club-03bcd569f7da4ad7912c9d32d41eef5c?pvs=21">Fight Club</a>, <a href="https://www.notion.so/Fast-and-Furious-9-53b846ebfd0a49369d97b6c7a767569c?pvs=21">Fast and Furious 9</a>, <a href="https://www.notion.so/Interstellar-6050361eec2044a4b0437b9490435219?pvs=21">Interstellar</a>, <a href="https://www.notion.so/Napoleon-8132cc9eefaa479592eb8bed52f91643?pvs=21">Napoleon</a>, <a href="https://www.notion.so/Spider-Man-Across-the-Spider-Verse-8d146f3051464cbb86102cd69e54bb99?pvs=21">Spider-Man: Across the Spider-Verse</a>, <a href="https://www.notion.so/Inception-a13c237f11c14ff3807dc2506b74df86?pvs=21">Inception</a>, <a href="https://www.notion.so/cc417a14c73f4d93bfa9aa9ecb20125e?pvs=21">Sans titre</a></td></tr><tr id="b70ef676-03aa-4901-8579-039fbe3048a0"><td class="cell-title"><a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-JQxo">7</td><td class="cell-Kx[t"><a href="https://www.notion.so/How-I-Met-Your-Mother-11f8f7e97e914c64ac262bbe71a8552d?pvs=21">How I Met Your Mother</a>, <a href="https://www.notion.so/Ahsoka-3c7d3cfd7ef44c4ab7535b818b250b9c?pvs=21">Ahsoka</a>, <a href="https://www.notion.so/Queen-s-Gambit-2d3c93d536e347c48bb5343c2d4dfb1d?pvs=21">Queen’s Gambit</a>, <a href="https://www.notion.so/Peaky-Blinders-51f4699201eb4df4963402f004846c0c?pvs=21">Peaky Blinders</a>, <a href="https://www.notion.so/Band-of-Brothers-0fc75e84453b4f47917e32d4c27977cc?pvs=21">Band of Brothers</a>, <a href="https://www.notion.so/Succession-48f956c4a8f6403ba9db9151979e3044?pvs=21">Succession</a>, <a href="https://www.notion.so/The-Last-of-Us-b471586c64cf4104972f7607cfee154b?pvs=21">The Last of Us</a></td></tr><tr id="65f0d3c6-4503-4ae9-93ba-2302d08c0816"><td class="cell-title"><a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-JQxo">4</td><td class="cell-Kx[t"><a href="https://www.notion.so/Attack-on-Titan-23ddf92b67e14099b3d1762b580d8f90?pvs=21">Attack on Titan</a>, <a href="https://www.notion.so/One-Piece-5da0d45aba0d479d9226bca6e804b214?pvs=21">One Piece</a>, <a href="https://www.notion.so/Full-Metal-Alchemist-Brotherhood-74e0785e573b4925b4aee006fabf54b7?pvs=21">Full Metal Alchemist: Brotherhood</a>, <a href="https://www.notion.so/Jujutsu-Kaisen-ebdd8c13a20f48c68de0e7ce76ef90aa?pvs=21">Jujutsu Kaisen</a></td></tr></tbody></table><br/><br/></div><div id="9d95b50f-6029-49c8-9ab4-d07f625997b5" class="collection-content"><h4 class="collection-title">Watchlist - Contents</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Category</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Genres</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesText"><path d="M1.56738 3.25879H14.4258C14.7676 3.25879 15.0479 2.97852 15.0479 2.63672C15.0479 2.29492 14.7744 2.02148 14.4258 2.02148H1.56738C1.21875 2.02148 0.952148 2.29492 0.952148 2.63672C0.952148 2.97852 1.22559 3.25879 1.56738 3.25879ZM1.56738 6.84082H14.4258C14.7676 6.84082 15.0479 6.56055 15.0479 6.21875C15.0479 5.87695 14.7744 5.60352 14.4258 5.60352H1.56738C1.21875 5.60352 0.952148 5.87695 0.952148 6.21875C0.952148 6.56055 1.22559 6.84082 1.56738 6.84082ZM1.56738 10.4229H14.4258C14.7676 10.4229 15.0479 10.1426 15.0479 9.80078C15.0479 9.45898 14.7744 9.18555 14.4258 9.18555H1.56738C1.21875 9.18555 0.952148 9.45898 0.952148 9.80078C0.952148 10.1426 1.22559 10.4229 1.56738 10.4229ZM1.56738 14.0049H8.75879C9.10059 14.0049 9.38086 13.7246 9.38086 13.3828C9.38086 13.041 9.10742 12.7676 8.75879 12.7676H1.56738C1.21875 12.7676 0.952148 13.041 0.952148 13.3828C0.952148 13.7246 1.22559 14.0049 1.56738 14.0049Z"></path></svg></span>Length</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesFormula"><path d="M5.04688 14.3604H11.2744C11.7324 14.3604 12.0537 14.0801 12.0537 13.6494C12.0537 13.2119 11.7324 12.9248 11.2744 12.9248H5.81934V12.8564L9.30566 8.82324C9.54492 8.57031 9.6748 8.29688 9.6748 8.0166C9.6748 7.73633 9.54492 7.45605 9.29883 7.20996L5.81934 3.2793V3.21094H11.2812C11.7393 3.21094 12.0537 2.92383 12.0537 2.48633C12.0537 2.05566 11.7393 1.77539 11.2812 1.77539H5.05371C4.34277 1.77539 3.95312 2.26758 3.95312 2.81445C3.95312 3.12207 4.07617 3.44336 4.33594 3.69629L8.15039 7.96875V8.05078L4.3291 12.4395C4.06934 12.6924 3.94629 13.0137 3.94629 13.3213C3.94629 13.8682 4.33594 14.3604 5.04688 14.3604Z"></path></svg></span>Rating</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesNumber"><path d="M2.4834 10.9902H4.33594L3.75488 13.8887C3.74121 13.9639 3.72754 14.0664 3.72754 14.1416C3.72754 14.5381 3.99414 14.7637 4.39746 14.7637C4.81445 14.7637 5.09473 14.5449 5.18359 14.1143L5.80566 10.9902H8.79297L8.21191 13.8887C8.19824 13.9639 8.18457 14.0664 8.18457 14.1416C8.18457 14.5381 8.45117 14.7637 8.85449 14.7637C9.27148 14.7637 9.55176 14.5449 9.63379 14.1143L10.2627 10.9902H12.4502C12.9287 10.9902 13.2432 10.6758 13.2432 10.2109C13.2432 9.8418 12.9902 9.56836 12.6006 9.56836H10.5498L11.2129 6.28711H13.3662C13.8379 6.28711 14.1523 5.96582 14.1523 5.50098C14.1523 5.13184 13.9062 4.8584 13.5098 4.8584H11.5L12.0195 2.27441C12.0264 2.21973 12.0469 2.11035 12.0469 2.01465C12.0469 1.625 11.7666 1.39258 11.3633 1.39258C10.9053 1.39258 10.6797 1.63867 10.5977 2.05566L10.0303 4.8584H7.04297L7.5625 2.27441C7.57617 2.21973 7.58984 2.11035 7.58984 2.01465C7.58984 1.625 7.30957 1.39258 6.91309 1.39258C6.44824 1.39258 6.21582 1.63867 6.13379 2.05566L5.57324 4.8584H3.54297C3.06445 4.8584 2.75 5.18652 2.75 5.65137C2.75 6.03418 3.00293 6.28711 3.39258 6.28711H5.28613L4.62305 9.56836H2.63379C2.15527 9.56836 1.84082 9.89648 1.84082 10.3613C1.84082 10.7373 2.09375 10.9902 2.4834 10.9902ZM6.09277 9.56836L6.75586 6.28711H9.74316L9.08008 9.56836H6.09277Z"></path></svg></span>Rating 1-10</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesStatus"><path d="M8.75488 1.02344C8.75488 0.613281 8.41309 0.264648 8.00293 0.264648C7.59277 0.264648 7.25098 0.613281 7.25098 1.02344V3.11523C7.25098 3.51855 7.59277 3.86719 8.00293 3.86719C8.41309 3.86719 8.75488 3.51855 8.75488 3.11523V1.02344ZM3.91504 5.0293C4.20215 5.31641 4.69434 5.32324 4.97461 5.03613C5.26855 4.74902 5.26855 4.25684 4.98145 3.96973L3.53906 2.52051C3.25195 2.2334 2.7666 2.21973 2.47949 2.50684C2.19238 2.79395 2.18555 3.28613 2.47266 3.57324L3.91504 5.0293ZM10.9629 4.01758C10.6826 4.30469 10.6826 4.79688 10.9697 5.08398C11.2568 5.37109 11.749 5.36426 12.0361 5.07715L13.4854 3.62793C13.7725 3.34082 13.7725 2.84863 13.4785 2.55469C13.1982 2.27441 12.7061 2.27441 12.4189 2.56152L10.9629 4.01758ZM15.0234 8.78906C15.4336 8.78906 15.7822 8.44727 15.7822 8.03711C15.7822 7.62695 15.4336 7.28516 15.0234 7.28516H12.9385C12.5283 7.28516 12.1797 7.62695 12.1797 8.03711C12.1797 8.44727 12.5283 8.78906 12.9385 8.78906H15.0234ZM0.975586 7.28516C0.56543 7.28516 0.223633 7.62695 0.223633 8.03711C0.223633 8.44727 0.56543 8.78906 0.975586 8.78906H3.07422C3.48438 8.78906 3.83301 8.44727 3.83301 8.03711C3.83301 7.62695 3.48438 7.28516 3.07422 7.28516H0.975586ZM12.0361 10.9902C11.749 10.71 11.2568 10.71 10.9629 10.9971C10.6826 11.2842 10.6826 11.7764 10.9697 12.0635L12.4258 13.5127C12.7129 13.7998 13.2051 13.793 13.4922 13.5059C13.7793 13.2256 13.7725 12.7266 13.4854 12.4395L12.0361 10.9902ZM2.52051 12.4395C2.22656 12.7266 2.22656 13.2188 2.50684 13.5059C2.79395 13.793 3.28613 13.7998 3.57324 13.5127L5.02246 12.0703C5.31641 11.7832 5.31641 11.291 5.03613 11.0039C4.74902 10.7168 4.25684 10.71 3.96973 10.9971L2.52051 12.4395ZM8.75488 12.9658C8.75488 12.5557 8.41309 12.207 8.00293 12.207C7.59277 12.207 7.25098 12.5557 7.25098 12.9658V15.0576C7.25098 15.4609 7.59277 15.8096 8.00293 15.8096C8.41309 15.8096 8.75488 15.4609 8.75488 15.0576V12.9658Z"></path></svg></span>Status</th></tr></thead><tbody><tr id="d5a9cae2-8b71-4a37-933c-cd0bd00774cf"><td class="cell-title"><a href="https://www.notion.so/d5a9cae28b714a37933ccd0bd00774cf?pvs=21">Sans titre</a></td><td class="cell-pmgp"></td><td class="cell-L{\q"></td><td class="cell-?]JL"></td><td class="cell-ak\;"></td><td class="cell-dFfY"></td><td class="cell-QojC"><span class="status-value select-value-color-red"><div class="status-dot status-dot-color-red"></div>Dropped</span></td></tr><tr id="a13c237f-11c1-4ff3-807d-c2506b74df86"><td class="cell-title"><a href="https://www.notion.so/Inception-a13c237f11c14ff3807dc2506b74df86?pvs=21">Inception</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Action-026b5ffc56bc4c50bff7460f4177991e?pvs=21"><span class="icon">💥</span>Action</a>, <a href="https://www.notion.so/Adventure-c9b0b98c88ed445bac645d6e2f13ccd2?pvs=21"><img class="icon" src="https://www.notion.so/icons/compass_gray.svg"/>Adventure</a>, <a href="https://www.notion.so/Sci-fi-495f3daff69a429e8a37069450a5c6df?pvs=21"><span class="icon">👽</span>Sci-fi</a></td><td class="cell-?]JL">2h 28m</td><td class="cell-ak\;">⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ - 9</td><td class="cell-dFfY">9</td><td class="cell-QojC"><span class="status-value select-value-color-green"><div class="status-dot status-dot-color-green"></div>Watched</span></td></tr><tr id="03bcd569-f7da-4ad7-912c-9d32d41eef5c"><td class="cell-title"><a href="https://www.notion.so/Fight-Club-03bcd569f7da4ad7912c9d32d41eef5c?pvs=21">Fight Club</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a></td><td class="cell-?]JL">2h 19m</td><td class="cell-ak\;">⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ - 8</td><td class="cell-dFfY">8</td><td class="cell-QojC"><span class="status-value select-value-color-green"><div class="status-dot status-dot-color-green"></div>Watched</span></td></tr><tr id="0fc75e84-453b-4f47-917e-32d4c27977cc"><td class="cell-title"><a href="https://www.notion.so/Band-of-Brothers-0fc75e84453b4f47917e32d4c27977cc?pvs=21">Band of Brothers</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-L{\q"><a href="https://www.notion.so/War-df5128a7df664d0ca49153af392e0160?pvs=21"><span class="icon">🪖</span>War</a>, <a href="https://www.notion.so/History-9efd17beba444098ab040e0dd5c1bb36?pvs=21"><span class="icon">🏰</span>History</a>, <a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a></td><td class="cell-?]JL">10 Episodes</td><td class="cell-ak\;"></td><td class="cell-dFfY"></td><td class="cell-QojC"><span class="status-value"><div class="status-dot"></div>To Watch</span></td></tr><tr id="11f8f7e9-7e91-4c64-ac26-2bbe71a8552d"><td class="cell-title"><a href="https://www.notion.so/How-I-Met-Your-Mother-11f8f7e97e914c64ac262bbe71a8552d?pvs=21">How I Met Your Mother</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Sitcom-0cfddbae6a2c4b1fa63b766e573455aa?pvs=21"><span class="icon">💬</span>Sitcom</a>, <a href="https://www.notion.so/Romance-4adaf565f0e2430088d935b8f8038a7c?pvs=21"><span class="icon">❤️</span>Romance</a>, <a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a></td><td class="cell-?]JL">208 Episodes</td><td class="cell-ak\;">⭐️⭐️⭐️⭐️⭐️ - 5</td><td class="cell-dFfY">5</td><td class="cell-QojC"><span class="status-value select-value-color-red"><div class="status-dot status-dot-color-red"></div>Dropped</span></td></tr><tr id="2d3c93d5-36e3-47c4-8bb5-343c2d4dfb1d"><td class="cell-title"><a href="https://www.notion.so/Queen-s-Gambit-2d3c93d536e347c48bb5343c2d4dfb1d?pvs=21">Queen’s Gambit</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a></td><td class="cell-?]JL">7 Episodes</td><td class="cell-ak\;"></td><td class="cell-dFfY"></td><td class="cell-QojC"><span class="status-value"><div class="status-dot"></div>To Watch</span></td></tr><tr id="53b846eb-fd0a-4936-9d97-b6c7a767569c"><td class="cell-title"><a href="https://www.notion.so/Fast-and-Furious-9-53b846ebfd0a49369d97b6c7a767569c?pvs=21">Fast and Furious 9</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Action-026b5ffc56bc4c50bff7460f4177991e?pvs=21"><span class="icon">💥</span>Action</a>, <a href="https://www.notion.so/Crime-805bf1fcc7ff4b2c9fcb711a569a0f9f?pvs=21"><span class="icon">👮‍♂️</span>Crime</a></td><td class="cell-?]JL">2h 23m</td><td class="cell-ak\;">⭐️⭐️⭐️⭐️ - 4</td><td class="cell-dFfY">4</td><td class="cell-QojC"><span class="status-value select-value-color-green"><div class="status-dot status-dot-color-green"></div>Watched</span></td></tr><tr id="8132cc9e-efaa-4795-92eb-8bed52f91643"><td class="cell-title"><a href="https://www.notion.so/Napoleon-8132cc9eefaa479592eb8bed52f91643?pvs=21">Napoleon</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a></td><td class="cell-L{\q"><a href="https://www.notion.so/War-df5128a7df664d0ca49153af392e0160?pvs=21"><span class="icon">🪖</span>War</a>, <a href="https://www.notion.so/History-9efd17beba444098ab040e0dd5c1bb36?pvs=21"><span class="icon">🏰</span>History</a>, <a href="https://www.notion.so/Biography-175403e914624fa0a5c0a220fb5f67db?pvs=21"><span class="icon">👨</span>Biography</a></td><td class="cell-?]JL">2h 38m</td><td class="cell-ak\;">⭐️⭐️⭐️⭐️⭐️⭐️⭐️ - 7</td><td class="cell-dFfY">7</td><td class="cell-QojC"><span class="status-value select-value-color-green"><div class="status-dot status-dot-color-green"></div>Watched</span></td></tr><tr id="8d146f30-5146-4cbb-8610-2cd69e54bb99"><td class="cell-title"><a href="https://www.notion.so/Spider-Man-Across-the-Spider-Verse-8d146f3051464cbb86102cd69e54bb99?pvs=21">Spider-Man: Across the Spider-Verse</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Animation-509aca6caa0a48c1a06d7081979b1e25?pvs=21"><span class="icon">🐰</span>Animation</a>, <a href="https://www.notion.so/Action-026b5ffc56bc4c50bff7460f4177991e?pvs=21"><span class="icon">💥</span>Action</a>, <a href="https://www.notion.so/Adventure-c9b0b98c88ed445bac645d6e2f13ccd2?pvs=21"><img class="icon" src="https://www.notion.so/icons/compass_gray.svg"/>Adventure</a></td><td class="cell-?]JL">2h 20m</td><td class="cell-ak\;"></td><td class="cell-dFfY"></td><td class="cell-QojC"><span class="status-value"><div class="status-dot"></div>To Watch</span></td></tr><tr id="ebdd8c13-a20f-48c6-8de0-e7ce76ef90aa"><td class="cell-title"><a href="https://www.notion.so/Jujutsu-Kaisen-ebdd8c13a20f48c68de0e7ce76ef90aa?pvs=21">Jujutsu Kaisen</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Action-026b5ffc56bc4c50bff7460f4177991e?pvs=21"><span class="icon">💥</span>Action</a>, <a href="https://www.notion.so/Shounen-8adb4ec5a4194e8b9420e8ffd968ef6c?pvs=21"><span class="icon">👶</span>Shounen</a>, <a href="https://www.notion.so/Fantasy-22be0b61985e4a9caec628be595c56d2?pvs=21"><span class="icon">🧙‍♂️</span>Fantasy</a></td><td class="cell-?]JL">47 Episodes</td><td class="cell-ak\;">⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ - 8</td><td class="cell-dFfY">8</td><td class="cell-QojC"><span class="status-value select-value-color-green"><div class="status-dot status-dot-color-green"></div>Watched</span></td></tr><tr id="23ddf92b-67e1-4099-b3d1-762b580d8f90"><td class="cell-title"><a href="https://www.notion.so/Attack-on-Titan-23ddf92b67e14099b3d1762b580d8f90?pvs=21">Attack on Titan</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Action-026b5ffc56bc4c50bff7460f4177991e?pvs=21"><span class="icon">💥</span>Action</a>, <a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a>, <a href="https://www.notion.so/Mystery-c5cce6c07eff4905a4f04b15c2abb87e?pvs=21"><img class="icon" src="https://www.notion.so/icons/conceal_gray.svg"/>Mystery</a></td><td class="cell-?]JL">89 Episode</td><td class="cell-ak\;">⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ - 8</td><td class="cell-dFfY">8</td><td class="cell-QojC"><span class="status-value select-value-color-green"><div class="status-dot status-dot-color-green"></div>Watched</span></td></tr><tr id="3c7d3cfd-7ef4-4c4a-b753-5b818b250b9c"><td class="cell-title"><a href="https://www.notion.so/Ahsoka-3c7d3cfd7ef44c4ab7535b818b250b9c?pvs=21">Ahsoka</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Adventure-c9b0b98c88ed445bac645d6e2f13ccd2?pvs=21"><img class="icon" src="https://www.notion.so/icons/compass_gray.svg"/>Adventure</a>, <a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a>, <a href="https://www.notion.so/Action-026b5ffc56bc4c50bff7460f4177991e?pvs=21"><span class="icon">💥</span>Action</a></td><td class="cell-?]JL">8? Episodes</td><td class="cell-ak\;"></td><td class="cell-dFfY"></td><td class="cell-QojC"><span class="status-value select-value-color-blue"><div class="status-dot status-dot-color-blue"></div>Watching</span></td></tr><tr id="48f956c4-a8f6-403b-a9db-9151979e3044"><td class="cell-title"><a href="https://www.notion.so/Succession-48f956c4a8f6403ba9db9151979e3044?pvs=21">Succession</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a>, <a href="https://www.notion.so/Comedy-6579a82dfb764c2eae073e54b5bbd9da?pvs=21"><span class="icon">😂</span>Comedy</a></td><td class="cell-?]JL">39? Episodes</td><td class="cell-ak\;"></td><td class="cell-dFfY"></td><td class="cell-QojC"><span class="status-value"><div class="status-dot"></div>To Watch</span></td></tr><tr id="51f46992-01eb-4df4-9634-02f004846c0c"><td class="cell-title"><a href="https://www.notion.so/Peaky-Blinders-51f4699201eb4df4963402f004846c0c?pvs=21">Peaky Blinders</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Crime-805bf1fcc7ff4b2c9fcb711a569a0f9f?pvs=21"><span class="icon">👮‍♂️</span>Crime</a>, <a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a></td><td class="cell-?]JL">36 Episodes</td><td class="cell-ak\;"></td><td class="cell-dFfY"></td><td class="cell-QojC"><span class="status-value"><div class="status-dot"></div>To Watch</span></td></tr><tr id="5da0d45a-ba0d-479d-9226-bca6e804b214"><td class="cell-title"><a href="https://www.notion.so/One-Piece-5da0d45aba0d479d9226bca6e804b214?pvs=21">One Piece</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Action-026b5ffc56bc4c50bff7460f4177991e?pvs=21"><span class="icon">💥</span>Action</a>, <a href="https://www.notion.so/Adventure-c9b0b98c88ed445bac645d6e2f13ccd2?pvs=21"><img class="icon" src="https://www.notion.so/icons/compass_gray.svg"/>Adventure</a>, <a href="https://www.notion.so/Shounen-8adb4ec5a4194e8b9420e8ffd968ef6c?pvs=21"><span class="icon">👶</span>Shounen</a></td><td class="cell-?]JL">1000+ Episodes</td><td class="cell-ak\;"></td><td class="cell-dFfY"></td><td class="cell-QojC"><span class="status-value select-value-color-blue"><div class="status-dot status-dot-color-blue"></div>Watching</span></td></tr><tr id="6050361e-ec20-44a4-b043-7b9490435219"><td class="cell-title"><a href="https://www.notion.so/Interstellar-6050361eec2044a4b0437b9490435219?pvs=21">Interstellar</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Sci-fi-495f3daff69a429e8a37069450a5c6df?pvs=21"><span class="icon">👽</span>Sci-fi</a>, <a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a>, <a href="https://www.notion.so/Adventure-c9b0b98c88ed445bac645d6e2f13ccd2?pvs=21"><img class="icon" src="https://www.notion.so/icons/compass_gray.svg"/>Adventure</a></td><td class="cell-?]JL">2h 49m</td><td class="cell-ak\;">⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ - 10</td><td class="cell-dFfY">10</td><td class="cell-QojC"><span class="status-value select-value-color-green"><div class="status-dot status-dot-color-green"></div>Watched</span></td></tr><tr id="74e0785e-573b-4925-b4ae-e006fabf54b7"><td class="cell-title"><a href="https://www.notion.so/Full-Metal-Alchemist-Brotherhood-74e0785e573b4925b4aee006fabf54b7?pvs=21">Full Metal Alchemist: Brotherhood</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Action-026b5ffc56bc4c50bff7460f4177991e?pvs=21"><span class="icon">💥</span>Action</a>, <a href="https://www.notion.so/Fantasy-22be0b61985e4a9caec628be595c56d2?pvs=21"><span class="icon">🧙‍♂️</span>Fantasy</a>, <a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a></td><td class="cell-?]JL">64 Episodes</td><td class="cell-ak\;">⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️⭐️ - 9</td><td class="cell-dFfY">9</td><td class="cell-QojC"><span class="status-value select-value-color-green"><div class="status-dot status-dot-color-green"></div>Watched</span></td></tr><tr id="b471586c-64cf-4104-972f-7607cfee154b"><td class="cell-title"><a href="https://www.notion.so/The-Last-of-Us-b471586c64cf4104972f7607cfee154b?pvs=21">The Last of Us</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-L{\q"><a href="https://www.notion.so/Action-026b5ffc56bc4c50bff7460f4177991e?pvs=21"><span class="icon">💥</span>Action</a>, <a href="https://www.notion.so/Adventure-c9b0b98c88ed445bac645d6e2f13ccd2?pvs=21"><img class="icon" src="https://www.notion.so/icons/compass_gray.svg"/>Adventure</a>, <a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a></td><td class="cell-?]JL">10 Episodes</td><td class="cell-ak\;"></td><td class="cell-dFfY"></td><td class="cell-QojC"><span class="status-value"><div class="status-dot"></div>To Watch</span></td></tr><tr id="cc417a14-c73f-4d93-bfa9-aa9ecb20125e"><td class="cell-title"><a href="https://www.notion.so/cc417a14c73f4d93bfa9aa9ecb20125e?pvs=21">Sans titre</a></td><td class="cell-pmgp"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a></td><td class="cell-L{\q"></td><td class="cell-?]JL"></td><td class="cell-ak\;"></td><td class="cell-dFfY"></td><td class="cell-QojC"><span class="status-value"><div class="status-dot"></div>To Watch</span></td></tr></tbody></table><br/><br/></div><div id="0358b592-8418-4e53-94d1-bf58f5d9d9c7" class="collection-content"><h4 class="collection-title">Watchlist - Genres</h4><table class="collection-content"><thead><tr><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesTitle"><path d="M0.637695 13.1914C1.0957 13.1914 1.32812 13 1.47852 12.5215L2.24414 10.3887H6.14746L6.90625 12.5215C7.05664 13 7.2959 13.1914 7.74707 13.1914C8.22559 13.1914 8.5332 12.9043 8.5332 12.4531C8.5332 12.2891 8.50586 12.1523 8.44434 11.9678L5.41602 3.79199C5.2041 3.21777 4.82129 2.9375 4.19922 2.9375C3.60449 2.9375 3.21484 3.21777 3.0166 3.78516L-0.0322266 12.002C-0.09375 12.1797 -0.121094 12.3232 -0.121094 12.4668C-0.121094 12.918 0.166016 13.1914 0.637695 13.1914ZM2.63379 9.12402L4.17871 4.68066H4.21973L5.76465 9.12402H2.63379ZM12.2793 13.2324C13.3115 13.2324 14.2891 12.6787 14.7129 11.8037H14.7402V12.5762C14.7471 12.9863 15.0273 13.2393 15.4238 13.2393C15.834 13.2393 16.1143 12.9795 16.1143 12.5215V8.00977C16.1143 6.49902 14.9658 5.52148 13.1543 5.52148C11.7666 5.52148 10.6592 6.08887 10.2695 6.99121C10.1943 7.15527 10.1533 7.3125 10.1533 7.46289C10.1533 7.81152 10.4062 8.04395 10.7686 8.04395C11.0215 8.04395 11.2129 7.94824 11.3496 7.73633C11.7529 6.99121 12.2861 6.65625 13.1064 6.65625C14.0977 6.65625 14.6992 7.20996 14.6992 8.1123V8.67285L12.5664 8.7959C10.7686 8.8916 9.77734 9.69824 9.77734 11.0107C9.77734 12.3369 10.8096 13.2324 12.2793 13.2324ZM12.6621 12.1387C11.8008 12.1387 11.2129 11.667 11.2129 10.9561C11.2129 10.2725 11.7598 9.82129 12.7578 9.75977L14.6992 9.62988V10.3203C14.6992 11.3457 13.7969 12.1387 12.6621 12.1387Z"></path></svg></span>Name</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Categories</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRollup"><path d="M1.25293 6.82031C1.25293 9.88965 3.74805 12.3848 6.81738 12.3848C7.95898 12.3848 9.00488 12.0361 9.87988 11.4414L13.0244 14.5859C13.2158 14.7842 13.4824 14.873 13.749 14.873C14.3301 14.873 14.7471 14.4355 14.7471 13.8682C14.7471 13.5947 14.6514 13.3418 14.4668 13.1504L11.3428 10.0195C11.9922 9.12402 12.3818 8.0166 12.3818 6.82031C12.3818 3.75098 9.88672 1.25586 6.81738 1.25586C3.74805 1.25586 1.25293 3.75098 1.25293 6.82031ZM2.70215 6.82031C2.70215 4.55078 4.54102 2.70508 6.81738 2.70508C9.08691 2.70508 10.9326 4.55078 10.9326 6.82031C10.9326 9.08984 9.08691 10.9355 6.81738 10.9355C4.54102 10.9355 2.70215 9.08984 2.70215 6.82031Z"></path></svg></span>Content Count</th><th><span class="icon property-icon"><svg role="graphics-symbol" viewBox="0 0 16 16" style="width:14px;height:14px;display:block;fill:rgba(55, 53, 47, 0.45);flex-shrink:0" class="typesRelation"><path d="M13.1475 10.5869V3.72363C13.1475 3.25195 12.833 2.93066 12.3477 2.93066H5.48438C5.02637 2.93066 4.70508 3.27246 4.70508 3.67578C4.70508 4.07227 5.05371 4.40039 5.46387 4.40039H7.89746L10.8438 4.30469L9.59961 5.39844L3.08496 11.9199C2.92773 12.0771 2.8457 12.2686 2.8457 12.46C2.8457 12.8564 3.20801 13.2256 3.61816 13.2256C3.80957 13.2256 3.99414 13.1504 4.15137 12.9932L10.6729 6.47168L11.7803 5.22754L11.6641 8.05762V10.6074C11.6641 11.0176 11.9922 11.373 12.4023 11.373C12.8057 11.373 13.1475 11.0312 13.1475 10.5869Z"></path></svg></span>Contents</th></tr></thead><tbody><tr id="026b5ffc-56bc-4c50-bff7-460f4177991e"><td class="cell-title"><a href="https://www.notion.so/Action-026b5ffc56bc4c50bff7460f4177991e?pvs=21"><span class="icon">💥</span>Action</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a>, <a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n">9</td><td class="cell-t&lt;c["><a href="https://www.notion.so/Attack-on-Titan-23ddf92b67e14099b3d1762b580d8f90?pvs=21">Attack on Titan</a>, <a href="https://www.notion.so/Ahsoka-3c7d3cfd7ef44c4ab7535b818b250b9c?pvs=21">Ahsoka</a>, <a href="https://www.notion.so/Fast-and-Furious-9-53b846ebfd0a49369d97b6c7a767569c?pvs=21">Fast and Furious 9</a>, <a href="https://www.notion.so/One-Piece-5da0d45aba0d479d9226bca6e804b214?pvs=21">One Piece</a>, <a href="https://www.notion.so/Full-Metal-Alchemist-Brotherhood-74e0785e573b4925b4aee006fabf54b7?pvs=21">Full Metal Alchemist: Brotherhood</a>, <a href="https://www.notion.so/Spider-Man-Across-the-Spider-Verse-8d146f3051464cbb86102cd69e54bb99?pvs=21">Spider-Man: Across the Spider-Verse</a>, <a href="https://www.notion.so/Inception-a13c237f11c14ff3807dc2506b74df86?pvs=21">Inception</a>, <a href="https://www.notion.so/The-Last-of-Us-b471586c64cf4104972f7607cfee154b?pvs=21">The Last of Us</a>, <a href="https://www.notion.so/Jujutsu-Kaisen-ebdd8c13a20f48c68de0e7ce76ef90aa?pvs=21">Jujutsu Kaisen</a></td></tr><tr id="c9b0b98c-88ed-445b-ac64-5d6e2f13ccd2"><td class="cell-title"><a href="https://www.notion.so/Adventure-c9b0b98c88ed445bac645d6e2f13ccd2?pvs=21"><img class="icon" src="https://www.notion.so/icons/compass_gray.svg"/>Adventure</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a>, <a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n">6</td><td class="cell-t&lt;c["><a href="https://www.notion.so/One-Piece-5da0d45aba0d479d9226bca6e804b214?pvs=21">One Piece</a>, <a href="https://www.notion.so/Interstellar-6050361eec2044a4b0437b9490435219?pvs=21">Interstellar</a>, <a href="https://www.notion.so/Inception-a13c237f11c14ff3807dc2506b74df86?pvs=21">Inception</a>, <a href="https://www.notion.so/Ahsoka-3c7d3cfd7ef44c4ab7535b818b250b9c?pvs=21">Ahsoka</a>, <a href="https://www.notion.so/Spider-Man-Across-the-Spider-Verse-8d146f3051464cbb86102cd69e54bb99?pvs=21">Spider-Man: Across the Spider-Verse</a>, <a href="https://www.notion.so/The-Last-of-Us-b471586c64cf4104972f7607cfee154b?pvs=21">The Last of Us</a></td></tr><tr id="6579a82d-fb76-4c2e-ae07-3e54b5bbd9da"><td class="cell-title"><a href="https://www.notion.so/Comedy-6579a82dfb764c2eae073e54b5bbd9da?pvs=21"><span class="icon">😂</span>Comedy</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a>, <a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n">1</td><td class="cell-t&lt;c["><a href="https://www.notion.so/Succession-48f956c4a8f6403ba9db9151979e3044?pvs=21">Succession</a></td></tr><tr id="5d3bb544-6973-4028-bc3c-2a4116a1febd"><td class="cell-title"><a href="https://www.notion.so/Drama-5d3bb54469734028bc3c2a4116a1febd?pvs=21"><img class="icon" src="https://www.notion.so/icons/theatre_gray.svg"/>Drama</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a>, <a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n">11</td><td class="cell-t&lt;c["><a href="https://www.notion.so/Attack-on-Titan-23ddf92b67e14099b3d1762b580d8f90?pvs=21">Attack on Titan</a>, <a href="https://www.notion.so/Full-Metal-Alchemist-Brotherhood-74e0785e573b4925b4aee006fabf54b7?pvs=21">Full Metal Alchemist: Brotherhood</a>, <a href="https://www.notion.so/Interstellar-6050361eec2044a4b0437b9490435219?pvs=21">Interstellar</a>, <a href="https://www.notion.so/How-I-Met-Your-Mother-11f8f7e97e914c64ac262bbe71a8552d?pvs=21">How I Met Your Mother</a>, <a href="https://www.notion.so/Ahsoka-3c7d3cfd7ef44c4ab7535b818b250b9c?pvs=21">Ahsoka</a>, <a href="https://www.notion.so/Queen-s-Gambit-2d3c93d536e347c48bb5343c2d4dfb1d?pvs=21">Queen’s Gambit</a>, <a href="https://www.notion.so/Peaky-Blinders-51f4699201eb4df4963402f004846c0c?pvs=21">Peaky Blinders</a>, <a href="https://www.notion.so/Fight-Club-03bcd569f7da4ad7912c9d32d41eef5c?pvs=21">Fight Club</a>, <a href="https://www.notion.so/Band-of-Brothers-0fc75e84453b4f47917e32d4c27977cc?pvs=21">Band of Brothers</a>, <a href="https://www.notion.so/Succession-48f956c4a8f6403ba9db9151979e3044?pvs=21">Succession</a>, <a href="https://www.notion.so/The-Last-of-Us-b471586c64cf4104972f7607cfee154b?pvs=21">The Last of Us</a></td></tr><tr id="22be0b61-985e-4a9c-aec6-28be595c56d2"><td class="cell-title"><a href="https://www.notion.so/Fantasy-22be0b61985e4a9caec628be595c56d2?pvs=21"><span class="icon">🧙‍♂️</span>Fantasy</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a>, <a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n">2</td><td class="cell-t&lt;c["><a href="https://www.notion.so/Full-Metal-Alchemist-Brotherhood-74e0785e573b4925b4aee006fabf54b7?pvs=21">Full Metal Alchemist: Brotherhood</a>, <a href="https://www.notion.so/Jujutsu-Kaisen-ebdd8c13a20f48c68de0e7ce76ef90aa?pvs=21">Jujutsu Kaisen</a></td></tr><tr id="c15e2fb5-6263-4684-8ae4-875fe630b706"><td class="cell-title"><a href="https://www.notion.so/Horror-c15e2fb5626346848ae4875fe630b706?pvs=21"><span class="icon">👻</span>Horror</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a>, <a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n"></td><td class="cell-t&lt;c["></td></tr><tr id="755170e3-d39b-4cbb-832e-a3df31c19eaa"><td class="cell-title"><a href="https://www.notion.so/Musical-755170e3d39b4cbb832ea3df31c19eaa?pvs=21"><span class="icon">🎶</span>Musical</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a>, <a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n"></td><td class="cell-t&lt;c["></td></tr><tr id="c5cce6c0-7eff-4905-a4f0-4b15c2abb87e"><td class="cell-title"><a href="https://www.notion.so/Mystery-c5cce6c07eff4905a4f04b15c2abb87e?pvs=21"><img class="icon" src="https://www.notion.so/icons/conceal_gray.svg"/>Mystery</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a>, <a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n">1</td><td class="cell-t&lt;c["><a href="https://www.notion.so/Attack-on-Titan-23ddf92b67e14099b3d1762b580d8f90?pvs=21">Attack on Titan</a></td></tr><tr id="4adaf565-f0e2-4300-88d9-35b8f8038a7c"><td class="cell-title"><a href="https://www.notion.so/Romance-4adaf565f0e2430088d935b8f8038a7c?pvs=21"><span class="icon">❤️</span>Romance</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a>, <a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n">1</td><td class="cell-t&lt;c["><a href="https://www.notion.so/How-I-Met-Your-Mother-11f8f7e97e914c64ac262bbe71a8552d?pvs=21">How I Met Your Mother</a></td></tr><tr id="495f3daf-f69a-429e-8a37-069450a5c6df"><td class="cell-title"><a href="https://www.notion.so/Sci-fi-495f3daff69a429e8a37069450a5c6df?pvs=21"><span class="icon">👽</span>Sci-fi</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a>, <a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n">2</td><td class="cell-t&lt;c["><a href="https://www.notion.so/Interstellar-6050361eec2044a4b0437b9490435219?pvs=21">Interstellar</a>, <a href="https://www.notion.so/Inception-a13c237f11c14ff3807dc2506b74df86?pvs=21">Inception</a></td></tr><tr id="0f961bae-c3ce-463b-8d9d-b276f87d740b"><td class="cell-title"><a href="https://www.notion.so/Sport-0f961baec3ce463b8d9db276f87d740b?pvs=21"><span class="icon">🏀</span>Sport</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a>, <a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n"></td><td class="cell-t&lt;c["></td></tr><tr id="eab7712b-8003-4910-86fc-2e6af38ccc65"><td class="cell-title"><a href="https://www.notion.so/Thriller-eab7712b8003491086fc2e6af38ccc65?pvs=21"><span class="icon">🔪</span>Thriller</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a>, <a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n"></td><td class="cell-t&lt;c["></td></tr><tr id="805bf1fc-c7ff-4b2c-9fcb-711a569a0f9f"><td class="cell-title"><a href="https://www.notion.so/Crime-805bf1fcc7ff4b2c9fcb711a569a0f9f?pvs=21"><span class="icon">👮‍♂️</span>Crime</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a>, <a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n">2</td><td class="cell-t&lt;c["><a href="https://www.notion.so/Peaky-Blinders-51f4699201eb4df4963402f004846c0c?pvs=21">Peaky Blinders</a>, <a href="https://www.notion.so/Fast-and-Furious-9-53b846ebfd0a49369d97b6c7a767569c?pvs=21">Fast and Furious 9</a></td></tr><tr id="9efd17be-ba44-4098-ab04-0e0dd5c1bb36"><td class="cell-title"><a href="https://www.notion.so/History-9efd17beba444098ab040e0dd5c1bb36?pvs=21"><span class="icon">🏰</span>History</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a>, <a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n">2</td><td class="cell-t&lt;c["><a href="https://www.notion.so/Napoleon-8132cc9eefaa479592eb8bed52f91643?pvs=21">Napoleon</a>, <a href="https://www.notion.so/Band-of-Brothers-0fc75e84453b4f47917e32d4c27977cc?pvs=21">Band of Brothers</a></td></tr><tr id="df5128a7-df66-4d0c-a491-53af392e0160"><td class="cell-title"><a href="https://www.notion.so/War-df5128a7df664d0ca49153af392e0160?pvs=21"><span class="icon">🪖</span>War</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a>, <a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n">2</td><td class="cell-t&lt;c["><a href="https://www.notion.so/Napoleon-8132cc9eefaa479592eb8bed52f91643?pvs=21">Napoleon</a>, <a href="https://www.notion.so/Band-of-Brothers-0fc75e84453b4f47917e32d4c27977cc?pvs=21">Band of Brothers</a></td></tr><tr id="27f75317-1daf-489c-9a27-555954633dfa"><td class="cell-title"><a href="https://www.notion.so/Western-27f753171daf489c9a27555954633dfa?pvs=21"><span class="icon">🤠</span>Western</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-V]}n"></td><td class="cell-t&lt;c["></td></tr><tr id="567ff4a3-0346-4e7b-bf0f-0bc1fa3dcb5b"><td class="cell-title"><a href="https://www.notion.so/Family-567ff4a303464e7bbf0f0bc1fa3dcb5b?pvs=21"><span class="icon">👨‍👩‍👦</span>Family</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-V]}n"></td><td class="cell-t&lt;c["></td></tr><tr id="509aca6c-aa0a-48c1-a06d-7081979b1e25"><td class="cell-title"><a href="https://www.notion.so/Animation-509aca6caa0a48c1a06d7081979b1e25?pvs=21"><span class="icon">🐰</span>Animation</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-V]}n">1</td><td class="cell-t&lt;c["><a href="https://www.notion.so/Spider-Man-Across-the-Spider-Verse-8d146f3051464cbb86102cd69e54bb99?pvs=21">Spider-Man: Across the Spider-Verse</a></td></tr><tr id="175403e9-1462-4fa0-a5c0-a220fb5f67db"><td class="cell-title"><a href="https://www.notion.so/Biography-175403e914624fa0a5c0a220fb5f67db?pvs=21"><span class="icon">👨</span>Biography</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-V]}n">1</td><td class="cell-t&lt;c["><a href="https://www.notion.so/Napoleon-8132cc9eefaa479592eb8bed52f91643?pvs=21">Napoleon</a></td></tr><tr id="71b6bfea-8782-46bd-9062-51cf76ae5e61"><td class="cell-title"><a href="https://www.notion.so/Documentary-71b6bfea878246bd906251cf76ae5e61?pvs=21"><span class="icon">🐺</span>Documentary</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Movies-3b1607fa1f1643d594b3f4628e88e770?pvs=21"><span class="icon">🍿</span>Movies</a>, <a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-V]}n"></td><td class="cell-t&lt;c["></td></tr><tr id="0cfddbae-6a2c-4b1f-a63b-766e573455aa"><td class="cell-title"><a href="https://www.notion.so/Sitcom-0cfddbae6a2c4b1fa63b766e573455aa?pvs=21"><span class="icon">💬</span>Sitcom</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Series-b70ef67603aa49018579039fbe3048a0?pvs=21"><span class="icon">📺</span>Series</a></td><td class="cell-V]}n">1</td><td class="cell-t&lt;c["><a href="https://www.notion.so/How-I-Met-Your-Mother-11f8f7e97e914c64ac262bbe71a8552d?pvs=21">How I Met Your Mother</a></td></tr><tr id="e24b568b-13b0-4078-846f-f632e34cc520"><td class="cell-title"><a href="https://www.notion.so/Mecha-e24b568b13b04078846ff632e34cc520?pvs=21"><span class="icon">🤖</span>Mecha</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n"></td><td class="cell-t&lt;c["></td></tr><tr id="8629dd27-c488-4ad7-98e6-f05268a8a355"><td class="cell-title"><a href="https://www.notion.so/Seinen-8629dd27c4884ad798e6f05268a8a355?pvs=21"><span class="icon">👨‍🦰</span>Seinen</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n"></td><td class="cell-t&lt;c["></td></tr><tr id="8adb4ec5-a419-4e8b-9420-e8ffd968ef6c"><td class="cell-title"><a href="https://www.notion.so/Shounen-8adb4ec5a4194e8b9420e8ffd968ef6c?pvs=21"><span class="icon">👶</span>Shounen</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n">2</td><td class="cell-t&lt;c["><a href="https://www.notion.so/One-Piece-5da0d45aba0d479d9226bca6e804b214?pvs=21">One Piece</a>, <a href="https://www.notion.so/Jujutsu-Kaisen-ebdd8c13a20f48c68de0e7ce76ef90aa?pvs=21">Jujutsu Kaisen</a></td></tr><tr id="1118bd1d-3ec2-494e-bf3d-3a1331db345e"><td class="cell-title"><a href="https://www.notion.so/School-1118bd1d3ec2494ebf3d3a1331db345e?pvs=21"><span class="icon">🏫</span>School</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n"></td><td class="cell-t&lt;c["></td></tr><tr id="2afe807e-e982-48bf-851f-1f23f8ed4a8f"><td class="cell-title"><a href="https://www.notion.so/Slices-of-Life-2afe807ee98248bf851f1f23f8ed4a8f?pvs=21"><span class="icon">🌳</span>Slices of Life</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n"></td><td class="cell-t&lt;c["></td></tr><tr id="79418cae-1457-492b-9355-c9c857b481a8"><td class="cell-title"><a href="https://www.notion.so/Martial-Arts-79418cae1457492b9355c9c857b481a8?pvs=21"><span class="icon">👊</span>Martial Arts</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n"></td><td class="cell-t&lt;c["></td></tr><tr id="64160ae8-3177-4300-9520-fee10531b946"><td class="cell-title"><a href="https://www.notion.so/Isekai-64160ae8317743009520fee10531b946?pvs=21"><span class="icon">🌎</span>Isekai</a></td><td class="cell-@A|w"><a href="https://www.notion.so/Animes-65f0d3c645034ae993ba2302d08c0816?pvs=21"><span class="icon">💥</span>Animes</a></td><td class="cell-V]}n"></td><td class="cell-t&lt;c["></td></tr></tbody></table><br/><br/></div><p id="401d73c9-4c0b-4c7f-91a3-ce10d72e3f98" class="">
+</p></details></li></ul><div id="50120c86-804b-4846-a74e-159f767ea29a" class="column-list"><div id="240c2dd2-5aa8-482c-ba68-47b43dd83370" style="width:50%" class="column"><p id="11379fa6-cb2a-4324-bf09-ec474745ed08" class="">
+</p></div><div id="c9cc27d0-c400-4d68-92d8-8aa81bd63ac6" style="width:50%" class="column"><p id="4bdf0cc6-dd98-46f6-97a6-03389fe3a201" class="">
+</p></div></div><p id="39a7da89-678e-405b-8100-08c31cb03eb4" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

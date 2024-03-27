@@ -1,0 +1,23 @@
+<html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>dashboard</TITLE>
+        <link rel="stylesheet" type="text/css" href="../static/styles/dashboard.css">
+        <link rel="stylesheet" type="text/css" href="../static/styles/header.css">
+    </HEAD>
+    <BODY>
+        <div class="sidebar">
+            <a href="#">Home</a>
+            <a href="#">Dashboard</a>
+            <a href="#">Profile</a>
+            <a href="#">Settings</a>
+          </div>
+        
+          <div class="content">
+            <h1>Dashboard</h1>
+            <p>Welcome to your dashboard. Here you can view and manage your data.</p>
+          </div>
+        <h1>Hello you are logged in.</h1>
+    <a href="{{url_for('logout')}}">Press here to logout</a>
+    </BODY>
+</HTML>

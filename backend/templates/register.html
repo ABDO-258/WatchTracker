@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<HTML lang="en">
+    <HEAD>
+        <TITLE>Register</TITLE>
+        <link rel="stylesheet" type="text/css" href="../static/styles/auth.css">
+    </HEAD>
+    <BODY>
+        <H1>Register page</H1>
+        <form method="POST" action="">
+            {{ form.hidden_tag() }}
+            {{ form.username }}
+            {{ form.email }}
+            {{ form.password }}
+            {{ form.submit }}
+        </form>
+        <a href="{{ url_for('login') }}">already have an account? Log In</a><br>
+    </BODY>
+</HTML>
