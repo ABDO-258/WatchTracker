@@ -12,7 +12,7 @@ import WatchList from '../WatchList';
 function Dashboard() {
 
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [results, setResults] = useState([]);
+    //const [results, setResults] = useState([]);
 
     useEffect(() => {
         fetch('/is_logged_in')

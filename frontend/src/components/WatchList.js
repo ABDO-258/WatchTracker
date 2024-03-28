@@ -45,6 +45,7 @@ function WatchList() {
                   src={`https://image.tmdb.org/t/p/w300${show.poster_path}`}
                   alt={show.name}
                   />
+                  <div className='name'>{show.title}</div>
                 </div>  
               </div>
             
