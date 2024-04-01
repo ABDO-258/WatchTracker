@@ -23,11 +23,11 @@ function SideBar() {
           <div className="popup">
             {/* Your popup content here (e.g., form, information) */}
             <div className='search-bar-container'>
-                            <SearchBar setResults={ setResults }/>
-                            <div className='search-result-container'>
-                                <SearchResultsList results={results}/>
-                            </div>
-                        </div> 
+                <SearchBar setResults={ setResults }/>
+                <div className='search-result-container'>
+                  <SearchResultsList results={results}/>
+                </div>
+            </div> 
             <button onClick={togglePopup}>Close</button>
           </div>
         )}

@@ -122,7 +122,7 @@ def register():
         # hash the password
         hashed_password = bcrypt.generate_password_hash(password)
         # Create a new user in the database
-        new_user = User(username=username, email=email,  password=hashed_password)
+        new_user = User(username=username, email=email, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
 
@@ -228,22 +228,19 @@ def add_to_watchlist(show_id):
         db.session.commit()
     else:
         new_show = show
-    print(new_show)    
+    print(new_show)
     print('++++++++++++')
     # Add entry to watchlist
     watchlist_entry = Watchlist(user_id=user.id, show_id=show_id)
     print('---------')
     print(watchlist_entry)
 
-    
 
 
     db.session.add(watchlist_entry)  # Add the watchlist entry to the session
     print('***********')
     print('++++++++++++')
-    
     db.session.commit()
-
     return jsonify({'message': 'Show added to watchlist'}), 201
 
 
@@ -265,8 +262,15 @@ def get_watchlist():
             watchlist_data.append({
                 'id': entry.id,  # Watchlist entry ID (optional)
                 'show_id': show.id,
-                'title': show.title,
+                'name': show.title,
                 'poster_path': show.poster_path,  # Include poster path if needed
+                'original_language': show.original_language,
+                'media_type' : show.media_type,
+                'overview' : show.overview,
+                'popularity' : show.vote_average,
+                'vote_count' : show.vote_count,
+                'first_air_date':show.first_air_date,
+
                 # Add other relevant show data as needed
             })
 

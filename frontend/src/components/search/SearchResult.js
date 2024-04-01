@@ -54,7 +54,6 @@ const handleAddToWatchlist = async (result) => {
           'X-CSRFToken': csrfToken
       }
     });
-    console.log('tes1')
     console.log(response.data); // Log the response for debugging (optional)
     // Optionally show a success message to the user
   } catch (error) {

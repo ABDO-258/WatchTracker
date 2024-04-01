@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './WatchList.css';
+import ReactDOM from 'react-dom';
+import ShowInfo from './ShowInfo';
 
 function WatchList() {
   const [watchlist, setWatchlist] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [activePopupIndex, setActivePopupIndex] = useState(null); // Track active popup index
 
   useEffect(() => {
     const fetchWatchlist = async () => {
@@ -28,6 +31,9 @@ function WatchList() {
     fetchWatchlist();
   }, []);  // Empty dependency array to run only once
 
+  const togglePopup = (index) => {
+    setActivePopupIndex(activePopupIndex === index ? null : index);
+  }
   // Render watchlist items based on state
   return (
     <div >
@@ -37,20 +43,31 @@ function WatchList() {
       {watchlist.length > 0 ? (
         <>
         <div className='container'>
-          {watchlist.map((show) => (
+          {watchlist.map((show, index) => (
             
-              <div className='list-container'>
+              <div className='list-container' key={index} onClick={() => togglePopup(index)}>
                 <div className='row'>
                   <img
                   src={`https://image.tmdb.org/t/p/w300${show.poster_path}`}
                   alt={show.name}
                   />
-                  <div className='name'>{show.title}</div>
-                </div>  
+                  <div className='name'>{show.name}</div>
+                </div>
+                <div className='shows-info' >
+                  {activePopupIndex === index && (
+                    ReactDOM.createPortal(
+                      <ShowInfo onClose={() => togglePopup(index)} result={show} />,
+                    document.body
+                    )     
+                  )}
+
+                </div> 
               </div>
+              
             
           ))}
         </div>
+
         </>
       ) : (
         <p>Your watchlist is empty.</p>

@@ -37,6 +37,7 @@ class Show(db.Model):
     poster_path = db.Column(db.String(255))  # Path to poster image
     backdrop_path = db.Column(db.String(255))  # Path to backdrop image
     original_language = db.Column(db.String(255))
+    media_type = db.Column(db.String(255))
     vote_average = db.Column(db.Float)
     vote_count = db.Column(db.Integer)
     first_air_date = db.Column(db.Date)
@@ -51,6 +52,7 @@ class Show(db.Model):
         self.poster_path = tmdb_data['poster_path']
         self.backdrop_path = tmdb_data['backdrop_path']
         self.original_language = tmdb_data['original_language']
+        self.media_type = tmdb_data['media_type']
         self.vote_average = tmdb_data['vote_average']
         self.vote_count = tmdb_data['vote_count']
         self.first_air_date = datetime.strptime(tmdb_data['first_air_date'], '%Y-%m-%d').date()
