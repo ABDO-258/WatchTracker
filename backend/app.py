@@ -261,7 +261,7 @@ def get_watchlist():
         if show:  # Check if show exists (optional)
             watchlist_data.append({
                 'id': entry.id,  # Watchlist entry ID (optional)
-                'show_id': show.id,
+                'show_id': show.tmdb_id,
                 'name': show.title,
                 'poster_path': show.poster_path,  # Include poster path if needed
                 'original_language': show.original_language,
@@ -270,6 +270,7 @@ def get_watchlist():
                 'popularity' : show.vote_average,
                 'vote_count' : show.vote_count,
                 'first_air_date':show.first_air_date,
+                'status' : entry.status,
 
                 # Add other relevant show data as needed
             })
@@ -290,6 +291,57 @@ def get_csrf_token():
 def check_login_status():
     """check the status of user"""
     return jsonify({'is_logged_in': True})  # or false if not logged in
+
+@app.route('/api/watchlist/delete/<int:show_id>', methods=['DELETE'])
+@login_required
+def delete_from_watchlist(show_id):
+    """ Delete a show from the watchlist """
+    user = current_user
+    # Query the watchlist entry to delete
+    watchlist_entry = Watchlist.query.filter_by(user_id=user.id, show_id=show_id).first()
+
+    if watchlist_entry:
+        try:
+            db.session.delete(watchlist_entry)  # Delete the watchlist entry
+            db.session.commit()
+            return jsonify({'message': 'Show deleted from watchlist'}), 200
+        except Exception as e:
+            # Handle database errors
+            print(f"Error deleting show from watchlist: {e}")
+            db.session.rollback()
+            return jsonify({'message': 'Failed to delete show from watchlist'}), 500
+    else:
+        return jsonify({'message': 'Show not found in watchlist'}), 404
+
+
+@app.route('/api/watchlist/update-status/<int:watchlist_entry_id>', methods=['PATCH'])
+@login_required
+def update_watchlist_status(watchlist_entry_id):
+    """ update the status of a show in the whatch list """
+    user = current_user
+
+    # Get the requested watchlist entry
+    watchlist_entry = Watchlist.query.get(watchlist_entry_id)
+    if not watchlist_entry or watchlist_entry.user_id != user.id:
+        return jsonify({'message': 'Watchlist entry not found or unauthorized'}), 404
+
+    try:
+        request_data = request.get_json()
+        new_status = request_data.get('status')
+
+        if new_status not in ('watching', 'completed', 'dropped'):
+            return jsonify({'message': 'Invalid status value'}), 400
+
+        # Update the status of the watchlist entry
+        watchlist_entry.status = new_status
+        db.session.commit()
+
+        return jsonify({'message': 'Status updated successfully'}), 200
+
+    except Exception as e:
+        print(f"Error updating status of watchlist entry: {e}")
+        db.session.rollback()
+        return jsonify({'message': 'Failed to update status'}), 500
 
 
 

@@ -4,6 +4,7 @@ from datetime import datetime
 import requests
 from flask_login import UserMixin
 from sqlalchemy.exc import IntegrityError
+from sqlalchemy import Enum
 from . import db
 
 
@@ -124,17 +125,22 @@ class Watchlist(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     show_id = db.Column(db.Integer, db.ForeignKey('show.tmdb_id'))
+    status = db.Column(Enum('watching', 'completed', 'dropped', name='status_enum'), nullable=False, default='watching')
 
 
-    def __init__(self, user_id, show_id):
+
+    def __init__(self, user_id, show_id, status='watching'):
         """Initialize a new Watchlist entry.
 
         Args:
         user_id (int): ID of the user for this watchlist entry.
         show_id (int): ID of the show to add to the watchlist.
+        show status: watching', 'completed', 'dropped'.
         """
         self.user_id = user_id
         self.show_id = show_id
+        self.status = status
+
 
     def __repr__(self):
         """Return a string representation of the Watchlist object.

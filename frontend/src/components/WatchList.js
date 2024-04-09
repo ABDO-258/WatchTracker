@@ -56,7 +56,9 @@ function WatchList() {
                 <div className='shows-info' >
                   {activePopupIndex === index && (
                     ReactDOM.createPortal(
-                      <ShowInfo onClose={() => togglePopup(index)} result={show} />,
+                      <ShowInfo 
+                      onClose={() => setActivePopupIndex(null)} // Close popup on onClose event
+                      result={show} />,
                     document.body
                     )     
                   )}
