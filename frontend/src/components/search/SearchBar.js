@@ -40,7 +40,7 @@ function SearchBar ({ setResults }) {
       onChange={(e) => handleChange(e.target.value)}
       >
       </input>
-      <i id="search-icon" class="fa-solid fa-magnifying-glass" onClick={handleClick}></i>
+      <i id="search-icon" className="fa-solid fa-magnifying-glass" onClick={handleClick}></i>
     </div>
     </>
   )
