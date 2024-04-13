@@ -1,9 +1,10 @@
 import '../../App.css';
 import './SignIn.css';
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, useNavigate  } from 'react-router-dom'; // Import for login link navigation
 import axios from 'axios';
 import Footer from '../Footer';
+import { AuthContext } from '../AuthContext';
 
 
 
@@ -14,6 +15,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [showMessage, setShowMessage] = useState(false);
+  const { login } = useContext(AuthContext);
 
   //function to fetch CSRF token
   const fetchCsrfToken = async () => {
@@ -62,10 +64,11 @@ const LoginForm = () => {
       // Clear form fields after successful registration (optional)
       setUsername('');
       setPassword('');
+      login();
       setShowMessage(true); // Show welcome message
       setTimeout(() => {
         // Redirect to dashboard after 2 seconds
-        navigate('/dashboard');
+      navigate('/dashboard');
       }, 3000);
     } catch (error) {
       setErrorMessage(error.message); // Display error message to user

@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from './Button';
 import './Navbar.css';
+import { AuthContext } from './AuthContext';
 
 function Navbar() {
+  const { isLoggedIn, logout, IsLoggedIn } = useContext(AuthContext);
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State for login status
   const navigate = useNavigate();
 
   const handleClick = () => setClick(!click);
@@ -19,22 +20,13 @@ function Navbar() {
       setButton(true);
     }
   };
-  const IsLoggedIn = () => {
-    fetch('/is_logged_in')
-      .then(response => response.json())
-      .then(data => {
-        if (data.is_logged_in) {
-          setIsLoggedIn(true);
-        }
-      })
-      .catch(error => console.error(error));
-  };
+  
 
   const handleClickLogout = () => {
     fetch('/logout') // Replace with your logout API endpoint
       .then(response => {
         if (response.ok) { // Check for successful logout response
-          setIsLoggedIn(false); // Update state
+          logout(); // Update state
           navigate('/'); // Redirect to login page
         } else {
           console.error('Logout failed'); // Handle errors
